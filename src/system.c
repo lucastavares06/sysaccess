@@ -70,6 +70,7 @@ void sysaccess_print_system_info_to(FILE* out) {
     const char* cpu = sysaccess_get_cpu_info();
     const float cpu_usage = sysaccess_cpu_usage();
     const unsigned int clock_mhz = sysaccess_get_cpu_clock_mhz();
+    const unsigned int clock_live = sysaccess_get_cpu_clock_live_mhz();
     const unsigned int cores = sysaccess_get_cpu_cores();
     const char* arch = sysaccess_get_architecture();
 
@@ -96,6 +97,7 @@ void sysaccess_print_system_info_to(FILE* out) {
     fprintf(out, "CPU Usage     : %.2f%%\n",              cpu_usage);
     fprintf(out, "CPU Cores     : %u\n",                  cores);
     fprintf(out, "CPU Clock     : %u MHz (base)\n",       clock_mhz);
+    fprintf(out, "CPU Live      : %u MHz (current)\n",    clock_live);
     fprintf(out, "Architecture  : %s\n",                  arch);
     fprintf(out, "RAM Usage     : %.2f%%\n",              ram_usage);
     fprintf(out, "Total RAM     : %.2f GB\n",             (double)total_ram / (1024 * 1024 * 1024));

@@ -1,7 +1,6 @@
 import ctypes
 import os
 import sys
-from typing import Optional
 
 def _find_dll():
     possible_paths = [
@@ -40,6 +39,7 @@ lib.sysaccess_get_drive_type.restype = ctypes.c_char_p
 lib.sysaccess_cpu_usage.restype = ctypes.c_float
 lib.sysaccess_get_cpu_cores.restype = ctypes.c_uint
 lib.sysaccess_get_cpu_clock_mhz.restype = ctypes.c_uint
+lib.sysaccess_get_cpu_clock_live_mhz.restype = ctypes.c_uint
 lib.sysaccess_get_uptime.restype = ctypes.c_ulonglong
 lib.sysaccess_get_process_id.restype = ctypes.c_uint
 lib.sysaccess_is_admin.restype = ctypes.c_int

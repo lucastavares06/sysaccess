@@ -11,7 +11,7 @@ extern "C" {
     const char* sysaccess_get_cpu_info(void);
 
     /// Returns the current CPU usage as a percentage (0.0 to 100.0).
-    /// Returns -1.0 on error.
+    /// Returns -1.0 on failure.
     float sysaccess_cpu_usage(void);
 
     /// Returns the number of logical CPU cores.
@@ -23,9 +23,12 @@ extern "C" {
 
     /// Returns the base CPU clock speed in MHz as reported by the system registry.
     /// This value is static and does not reflect real-time changes.
-    /// Returns 0 on error.
+    /// Returns 0 on failure.
     unsigned int sysaccess_get_cpu_clock_mhz(void);
 
+    /// Returns the current dynamic CPU frequency in MHz (averaged across all cores).
+    /// Returns 0 on failure.
+    unsigned int sysaccess_get_cpu_clock_live_mhz(void);
 #ifdef __cplusplus
 }
 #endif

@@ -14,6 +14,10 @@ add_library(sysaccess SHARED
         src/disk.c
 )
 
+if (WIN32)
+    target_link_libraries(sysaccess PRIVATE pdh)
+endif()
+
 add_executable(test_cpu
         tests/test.c
 )

@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
     /// Returns the current RAM usage in percentage (0.0 to 100.0).
-    /// Returns -1.0 on error.
+    /// Returns -1.0 on failure.
     float sysaccess_ram_usage(void);
 
     /// Returns the total physical memory in bytes.
