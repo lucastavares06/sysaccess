@@ -1,0 +1,49 @@
+# ──────────────
+# BUILD / CMAKE
+# ──────────────
+/build/
+/cmake-build-*/
+/CMakeFiles/
+/Makefile
+/CMakeCache.txt
+/*.cmake
+/*.o
+/*.obj
+/*.exe
+/*.dll
+/*.a
+/*.lib
+
+# ──────────────
+# PYTHON
+# ──────────────
+__pycache__/
+/*.pyc
+/*.pyo
+/*.pyd
+.venv/
+.env/
+env/
+venv/
+*.egg-info/
+dist/
+*.so
+
+# ──────────────
+# LOG FILES
+# ──────────────
+*.log
+
+# ──────────────
+# IDEs & EDITORS
+# ──────────────
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ──────────────
+# SYSTEM FILES
+# ──────────────
+.DS_Store
+Thumbs.db
