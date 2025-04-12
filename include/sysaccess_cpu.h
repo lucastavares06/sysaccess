@@ -21,6 +21,11 @@ extern "C" {
     /// The returned string is stored internally and must not be freed.
     const char* sysaccess_get_architecture(void);
 
+    /// Returns the base CPU clock speed in MHz as reported by the system registry.
+    /// This value is static and does not reflect real-time changes.
+    /// Returns 0 on error.
+    unsigned int sysaccess_get_cpu_clock_mhz(void);
+
 #ifdef __cplusplus
 }
 #endif

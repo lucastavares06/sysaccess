@@ -93,3 +93,36 @@ const char* sysaccess_get_architecture(void) {
 
     return arch_str;
 }
+
+unsigned int sysaccess_get_cpu_clock_mhz(void) {
+    HKEY hKey;
+    DWORD mhz = 0;
+    DWORD size = sizeof(DWORD);
+
+    LONG result = RegOpenKeyExA(
+        HKEY_LOCAL_MACHINE,
+        "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+        0,
+        KEY_READ,
+        &hKey
+    );
+
+    if (result != ERROR_SUCCESS)
+        return 0;
+
+    result = RegQueryValueExA(
+        hKey,
+        "~MHz",
+        NULL,
+        NULL,
+        (LPBYTE)&mhz,
+        &size
+    );
+
+    RegCloseKey(hKey);
+
+    if (result != ERROR_SUCCESS)
+        return 0;
+
+    return mhz;
+}
