@@ -29,6 +29,10 @@ extern "C" {
     /// Returns the current dynamic CPU frequency in MHz (averaged across all cores).
     /// Returns 0 on failure.
     unsigned int sysaccess_get_cpu_clock_live_mhz(void);
+
+    /// Returns the number of threads per physical core (e.g., 2 for hyper-threading).
+    /// Returns 0 on failure.
+    unsigned int sysaccess_get_cpu_threads_per_core(void);
 #ifdef __cplusplus
 }
 #endif

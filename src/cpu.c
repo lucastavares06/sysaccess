@@ -120,7 +120,7 @@ float sysaccess_cpu_usage(void) {
     const ULONGLONG user_diff   = filetime_to_uint64(user2) - filetime_to_uint64(user1);
     const ULONGLONG total       = kernel_diff + user_diff;
 
-    return (total == 0) ? -1.0f : 100.0f * (1.0f - (float)idle_diff / (float)total);
+    return total == 0 ? -1.0f : 100.0f * (1.0f - (float)idle_diff / (float)total);
 }
 
 unsigned int sysaccess_get_cpu_cores(void) {
@@ -197,4 +197,37 @@ unsigned int sysaccess_get_cpu_clock_live_mhz(void) {
     }
 
     return 0;
+}
+
+unsigned int sysaccess_get_cpu_threads_per_core(void) {
+    DWORD length = 0;
+    GetLogicalProcessorInformation(NULL, &length);
+
+    SYSTEM_LOGICAL_PROCESSOR_INFORMATION* buffer = malloc(length);
+    if (!buffer) return 0;
+
+    if (!GetLogicalProcessorInformation(buffer, &length)) {
+        free(buffer);
+        return 0;
+    }
+
+    const DWORD count = length / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION);
+    DWORD physical_cores = 0;
+    DWORD logical_cores = 0;
+
+    for (DWORD i = 0; i < count; ++i) {
+        if (buffer[i].Relationship == RelationProcessorCore) {
+            physical_cores++;
+            KAFFINITY mask = buffer[i].ProcessorMask;
+            while (mask) {
+                logical_cores += mask & 1;
+                mask >>= 1;
+            }
+        }
+    }
+
+    free(buffer);
+
+    if (physical_cores == 0) return 0;
+    return logical_cores / physical_cores;
 }

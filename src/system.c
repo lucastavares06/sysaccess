@@ -72,6 +72,7 @@ void sysaccess_print_system_info_to(FILE* out) {
     const unsigned int clock_mhz = sysaccess_get_cpu_clock_mhz();
     const unsigned int clock_live = sysaccess_get_cpu_clock_live_mhz();
     const unsigned int cores = sysaccess_get_cpu_cores();
+    const unsigned int threads_per_core = sysaccess_get_cpu_threads_per_core(); // ← aqui
     const char* arch = sysaccess_get_architecture();
 
     const float ram_usage = sysaccess_ram_usage();
@@ -98,6 +99,7 @@ void sysaccess_print_system_info_to(FILE* out) {
     fprintf(out, "CPU Cores     : %u\n",                  cores);
     fprintf(out, "CPU Clock     : %u MHz (base)\n",       clock_mhz);
     fprintf(out, "CPU Live      : %u MHz (current)\n",    clock_live);
+    fprintf(out, "Threads/Core  : %u\n",                  threads_per_core);
     fprintf(out, "Architecture  : %s\n",                  arch);
     fprintf(out, "RAM Usage     : %.2f%%\n",              ram_usage);
     fprintf(out, "Total RAM     : %.2f GB\n",             (double)total_ram / (1024 * 1024 * 1024));
@@ -117,3 +119,4 @@ void sysaccess_print_system_info_to(FILE* out) {
         fprintf(out, "Disk (C:)     : Failed to retrieve.\n");
     }
 }
+
