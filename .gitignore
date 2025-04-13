@@ -33,6 +33,7 @@ dist/
 # LOG FILES
 # ──────────────
 *.log
+logs
 
 # ──────────────
 # IDEs & EDITORS
