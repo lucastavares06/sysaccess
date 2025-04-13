@@ -53,3 +53,12 @@ const char* sysaccess_get_drive_type(const char* drive) {
         default:                return "Unknown";
     }
 }
+
+float sysaccess_get_disk_usage_percent(const char* drive) {
+    unsigned long long total = 0, free = 0;
+    if (!sysaccess_get_disk_usage(drive, &total, &free) || total == 0)
+        return -1.0f;
+
+    const unsigned long long used = total - free;
+    return (float)used * 100.0f / (float)total;
+}

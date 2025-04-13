@@ -9,6 +9,10 @@ extern "C" {
     /// Returns 1 on success, 0 on failure.
     int sysaccess_get_disk_usage(const char* drive, unsigned long long* total, unsigned long long* free);
 
+    /// Returns the disk usage percentage for the given drive (e.g., "C:\\").
+    /// Returns -1.0 on failure.
+    float sysaccess_get_disk_usage_percent(const char* drive);
+
     /// Lists all logical drives as a space-separated string (e.g., "C:\\ D:\\").
     /// The result is stored internally and must not be freed.
     /// Returns NULL on failure.
