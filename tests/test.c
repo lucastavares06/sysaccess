@@ -1,13 +1,14 @@
-#include "sysaccess_system.h"
+#include <stdio.h>
+#include "sysaccess_snapshot.h"
 
 int main(void) {
-    sysaccess_print_system_info();
+    SysSnapshot snapshot;
 
-    if (sysaccess_log_to_file("diagnostic.log")) {
-        printf("\nLog saved to diagnostic.log\n");
-    } else {
-        printf("\nFailed to save log\n");
+    if (!sysaccess_snapshot(&snapshot)) {
+        fprintf(stderr, "Failed to collect system snapshot.\n");
+        return 1;
     }
 
+    sysaccess_print_snapshot(&snapshot, stdout);
     return 0;
 }
