@@ -12,10 +12,18 @@ add_library(sysaccess SHARED
         src/user.c
         src/system.c
         src/disk.c
+        src/net.c
+        src/snapshot.c
+        src/snapshot_json.c
 )
 
 if (WIN32)
-    target_link_libraries(sysaccess PRIVATE pdh)
+    target_link_libraries(sysaccess PRIVATE
+            pdh
+            iphlpapi
+            ws2_32
+            wininet
+    )
 endif()
 
 add_executable(test_cpu
