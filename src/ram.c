@@ -24,3 +24,23 @@ unsigned long long sysaccess_total_ram(void) {
 
     return 0;
 }
+
+unsigned long long sysaccess_ram_used_bytes(void) {
+    MEMORYSTATUSEX status;
+    status.dwLength = sizeof(status);
+
+    if (!GlobalMemoryStatusEx(&status))
+        return 0;
+
+    return status.ullTotalPhys - status.ullAvailPhys;
+}
+
+unsigned long long sysaccess_ram_available_bytes(void) {
+    MEMORYSTATUSEX status;
+    status.dwLength = sizeof(status);
+
+    if (!GlobalMemoryStatusEx(&status))
+        return 0;
+
+    return status.ullAvailPhys;
+}

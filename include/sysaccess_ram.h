@@ -12,6 +12,14 @@ extern "C" {
     /// Returns the total physical memory in bytes.
     unsigned long long sysaccess_total_ram(void);
 
+    /// Returns the amount of physical memory currently in use (in bytes).
+    /// Returns 0 on failure.
+    unsigned long long sysaccess_ram_used_bytes(void);
+
+    /// Returns the amount of physical memory currently available (in bytes).
+    /// Returns 0 on failure.
+    unsigned long long sysaccess_ram_available_bytes(void);
+
 #ifdef __cplusplus
 }
 #endif
