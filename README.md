@@ -10,7 +10,7 @@
 git clone https://github.com/lucastavares06/sysaccess
 ```
 
-Include the headers in your project and link against the compiled `.dll`. The API is written in C and compatible with C++ and `ctypes` in Python.
+To use the library, include the headers in your project and link against `libsysaccess.dll`. The C-style API is compatible with any language that supports dynamic linking.
 
 ---
 
